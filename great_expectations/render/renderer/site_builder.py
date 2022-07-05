@@ -282,7 +282,8 @@ class SiteBuilder:
     def clean_site(self) -> None:
         self.target_store.clean_site()
 
-    def build(self, resource_identifiers=None, build_index: bool = True):
+    def build(self, resource_identifiers=None, build_index: bool = True,
+              static_assets_source_dir=None):
         """
 
         :param resource_identifiers: a list of resource identifiers
@@ -308,7 +309,7 @@ class SiteBuilder:
         if self.ge_cloud_mode:
             return
 
-        self.target_store.copy_static_assets()
+        self.target_store.copy_static_assets(static_assets_source_dir)
 
         _, index_links_dict = self.site_index_builder.build(build_index=build_index)
         return (

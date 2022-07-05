@@ -2497,6 +2497,7 @@ class BaseDataContext(EphemeralDataContext, ConfigPeer):
         resource_identifiers=None,
         dry_run=False,
         build_index: bool = True,
+        static_assets_source_dir = None
     ):
         """
         Build Data Docs for your project.
@@ -2527,6 +2528,8 @@ class BaseDataContext(EphemeralDataContext, ConfigPeer):
             of their index.html files as values
         """
         logger.debug("Starting DataContext.build_data_docs")
+        
+        print("abc")
 
         index_page_locator_infos = {}
 
@@ -2566,6 +2569,7 @@ class BaseDataContext(EphemeralDataContext, ConfigPeer):
                         index_page_resource_identifier_tuple = site_builder.build(
                             resource_identifiers,
                             build_index=(build_index and not self.ge_cloud_mode),
+                            static_assets_source_dir = static_assets_source_dir
                         )
                         if index_page_resource_identifier_tuple:
                             index_page_locator_infos[
